@@ -1,0 +1,167 @@
+
+<nav class="navbar bg-dark">
+    <div class="container">
+        <h2>INFOSPICA</h2>
+    </div>
+    <div class="d-flex">
+     <button class="btn btn-danger"data-bs-toggle="modal"data-bs-target="#exampleModal">Add Employee</button> 
+    </div>
+    </nav>
+    
+      
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div style="background-color: yellowgreen;"class="modal-header">
+              <h5 style="color:white;"class="modal-title" id="exampleModalLabel">ADD EMPLOYEE DATA</h5>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="employeeform" novalidate>
+                    <div  class="form-group mb-2">
+                      <p>
+                      <label for="employeeid">Employee ID</label>
+                      <input type="number" class="form-control" formControlName="employeeid"  placeholder="Enter EmployeeId">
+                      </p>
+                    
+                    <div *ngIf="!employeeid?.valid && (employeeid?.dirty||employeeid?.touched)">
+                     <div style="color:red" [hidden]="!employeeid?.errors?.['required']">
+                        EmployeeID is required.
+                      </div>
+                      <div style="color:red" [hidden]="!employeeid?.errors?.['max']">
+                        Maximum Length is 10
+                      </div>
+                    </div>
+                    </div>
+                  
+                    <div class="form-group mb-2">
+                      <p>
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" formControlName="name"  placeholder="Enter name">
+                      </p>
+                        <div *ngIf="!name?.valid && (name?.dirty||name?.touched)">
+                          <div style="color:red" [hidden]="!name?.errors?.['required']">
+                            Name is required.
+                          </div>
+                          <div style="color:red" [hidden]="!name?.errors?.['maxlength']">
+                            Maximum Length is 50.
+                          </div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                      <p>
+                        <label for="dob">DOB</label>
+                        <input type="date" class="form-control" formControlName="dob"   placeholder="Enter dateofbirth">
+                        </p>
+                        <div *ngIf="!dob?.valid && (dob?.dirty||dob?.touched)">
+                          <div style="color:red" [hidden]="!dob?.errors?.['required']">
+                            Date of Birth is required.
+                          </div>
+                    </div>
+                    </div>
+                    <div class="form-group mb-2">
+                      <p>
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" formControlName="email"  placeholder="Enter email">
+                        </p>
+                        <div *ngIf="!email?.valid && (email?.dirty||email?.touched)">
+                          <div style="color:red" [hidden]="!email?.errors?.['required']">
+                            Email is required.
+                          </div>
+                          <div style="color:red" [hidden]="!email?.errors?.['pattern']">
+                            Please Enter the value email.
+                          </div>
+                          <div style="color:red" [hidden]="!phonenumber?.errors?.['maxlength']">
+                            Maximum Length is 50.
+                          </div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="phonenumber">Phone number</label>
+                        <input type="number" class="form-control" formControlName="phonenumber"  placeholder="Enter phonenumber">
+                        <div *ngIf="!phonenumber?.valid && (phonenumber?.dirty||phonenumber?.touched)">
+                          <div style="color:red" [hidden]="!phonenumber?.errors?.['required']">
+                            Phone is required.
+                          </div>
+                          <div style="color:red" [hidden]="!phonenumber?.errors?.['min']">
+                            Minimum Length is 10.
+                          </div>
+                          <div style="color:red" [hidden]="!phonenumber?.errors?.['max']">
+                            Maximum Length is 12.
+                          </div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <p>
+                      <label for="salary">Salary</label>
+                      <input type="INR" class="form-control" formControlName="salary"  placeholder="Enter Salary">
+                      </p>
+                      <div *ngIf="!salary?.valid && (salary?.dirty||salary?.touched)">
+                        <div style="color:red" [hidden]="!salary?.errors?.['required']">
+                          Salary is required.
+                        </div>
+                        <div style="color:red" [hidden]="!salary?.errors?.['maxlength']">
+                          Minimum Length is 6.
+                        </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Gender</label>
+                    <div class="row">
+                      <label class="md-check">
+                        <input type="radio" value="male" name="gender" formControlName="gender">
+                        Male
+                      </label>
+                  
+                      <label class="md-check">
+                        <input type="radio" value="female" name="gender" formControlName="gender">     
+                        Female
+                      </label>
+                    </div>
+                  </div>
+                  </div>
+                    
+                  </form>
+            </div>
+            <div style="background-color: yellowgreen;" class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button (click)="addemployee(this.employeeform.value)" [disabled]="this.employeeform.invalid" type="button" class="btn btn-primary">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="container-fluid mt-3">
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">EmployeeID</th>
+                <th scope="col">Name</th>
+                <th scope="col">DOB</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone number</th>
+                <th scope="col">Salary</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of data">
+                <td>{{item.employeeid}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.dob}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.phonenumber}}</td>
+                <td>{{item.salary}}</td>
+                <td>{{item.gender}}</td>
+                <td><button routerLink="/update/{{item.id}}"  class="btn btn-warning">Edit</button>&nbsp;
+                    <button (click)="delete(item.id)"class="btn btn-danger">Delete</button>
+                </td>
+              </tr>
+           
+            </tbody>
+          </table>
+      </div>
+    

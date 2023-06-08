@@ -1,0 +1,14 @@
+{
+  "posts": [
+    {
+      "employeeid": 5655788767,
+      "name": "ANANDASIVA",
+      "dob": "2023-01-02",
+      "email": "anandasiva284@gmail.com",
+      "phonenumber": 8438095091,
+      "salary": 399667,
+      "gender": "male",
+      "id": 1
+    }
+  ]
+}
